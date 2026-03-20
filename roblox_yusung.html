@@ -5,31 +5,7 @@
 
 <p>you can download freemodel here!</p>
 
-<!-- HTML -->
-<button class="toggle-btn">펼치기/접기</button>
-<div class="content">애니메이션 내용입니다.</div>
 
-<style>
-/* CSS */
-.content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-out; /* 부드러운 전환 효과 */
-}
-.content.active {
-  max-height: 200px; /* 펼쳐질 높이 */
-}
-</style>
-
-<script>
-// JavaScript
-const btn = document.querySelector('.toggle-btn');
-const content = document.querySelector('.content');
-
-btn.addEventListener('click', () => {
-  content.classList.toggle('active');
-});
-</script>
 
 <a href="원작자_그린시티_차량3종모음.zip" download>
   <button>차량 모음집 다운로드</button>
