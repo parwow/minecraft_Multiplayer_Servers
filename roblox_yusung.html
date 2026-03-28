@@ -21,6 +21,109 @@
 
 <p>여기서 무료배포 모델 다운로드가 가능합니다.</p>
 
+<h1>📋 게시판</h1>
+
+<div class="write-box">
+    <input type="text" id="author" placeholder="작성자">
+    <input type="text" id="title" placeholder="제목">
+    <textarea id="content" placeholder="내용"></textarea>
+    <button onclick="addPost()">글쓰기</button>
+</div>
+
+<hr>
+
+<div id="post-list"></div>
+
+<script>
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+function save() {
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+function addPost() {
+    const author = document.getElementById("author").value;
+    const title = document.getElementById("title").value;
+    const content = document.getElementById("content").value;
+
+    if (!author || !title || !content) {
+        alert("다 입력하세요!");
+        return;
+    }
+
+    posts.unshift({
+        id: Date.now(),
+        author,
+        title,
+        content,
+        views: 0,
+        likes: 0,
+        comments: []
+    });
+
+    save();
+    render();
+}
+
+function addComment(id) {
+    const input = document.getElementById("comment-" + id);
+    const text = input.value;
+
+    if (!text) return;
+
+    const post = posts.find(p => p.id === id);
+    post.comments.push(text);
+
+    input.value = "";
+    save();
+    render();
+}
+
+function likePost(id) {
+    const post = posts.find(p => p.id === id);
+    post.likes++;
+    save();
+    render();
+}
+
+function viewPost(id) {
+    const post = posts.find(p => p.id === id);
+    post.views++;
+    save();
+    render();
+}
+
+function render() {
+    const list = document.getElementById("post-list");
+    list.innerHTML = "";
+
+    posts.forEach(post => {
+        const div = document.createElement("div");
+        div.className = "post";
+
+        div.innerHTML = `
+            <h3 onclick="viewPost(${post.id})">${post.title}</h3>
+            <p>작성자: ${post.author}</p>
+            <p>${post.content}</p>
+            <p>조회수: ${post.views} | ❤️ ${post.likes}</p>
+            <button onclick="likePost(${post.id})">하트</button>
+
+            <div>
+                <input id="comment-${post.id}" placeholder="댓글">
+                <button onclick="addComment(${post.id})">작성</button>
+            </div>
+
+            <div>
+                ${post.comments.map(c => `<p class="comment">💬 ${c}</p>`).join("")}
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+render();
+</script>
 <details>
     <summary>테슬라, BYD, sm5 다운로드(로블록스)</summary>
     <img src="https://i.ibb.co/rfHGd6wz/Roblox-Screen-Shot20260321-095248705.png" title="이것은 매우 멋진 차량들의 모습으로, 이 모델은 그린시티(님)이(가) 만들었다. 이 사진의 특징은 유성시에서 촬영했으며 편집이 전혀 들어가지 않았다. 이 사진에 들어간 모델은 이 사이트에서 다운로드 버튼을 통해 다운로드할 수 있다." width="200" height="100" alt="모델사진"/>
