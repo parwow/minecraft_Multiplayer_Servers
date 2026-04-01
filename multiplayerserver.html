@@ -13,6 +13,26 @@
                 <span>타우니 야생 서버</span>
             </nav>
         </header>
+        <script>
+        function updateServer() {
+  fetch("https://api.mcsrvstat.us/2/yourserver.com")
+    .then(res => res.json())
+    .then(data => {
+      const status = document.getElementById("status");
+
+      if (data.online) {
+        status.innerText = "🟢 ON";
+        document.getElementById("players").innerText =
+          data.players.online + " / " + data.players.max;
+      } else {
+        status.innerText = "🔴 OFF";
+      }
+    });
+}
+
+updateServer();
+setInterval(updateServer, 10000); // 10초마다 갱신
+</script>
         <main>
             <nav>
                 <ui>
