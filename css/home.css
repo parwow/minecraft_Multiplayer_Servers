@@ -1,10 +1,41 @@
-.container {
-    display: flex;
-    justify-content: center; /* 가운데 정렬 */
-    align-items: center;     /* 세로 정렬 */
-    gap: 20px;               /* 이미지 사이 간격 */
+body {
+    margin: 0;
+    background: #000;
+    font-family: sans-serif;
 }
 
-.container a img {
-    width: 150px; /* 원하는 크기 */
+/* 전체 중앙 정렬 */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 100vh;
+}
+
+/* 카드 기본 스타일 */
+.card {
+    position: relative;
+    width: 260px;
+    height: 160px;
+    background: #111;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    transition: 0.3s;
+    border: 1px solid #333;
+}
+
+/* 호버 효과 */
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #777;
+}
+
+/* 아이콘 */
+.icon {
+    font-size: 28px;
+    margin-bottom: 10px;
 }
