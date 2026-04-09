@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 70px;
+    border-bottom: 1px solid #eee;
+}
+
+/* 로고 */
+.logo {
+    font-weight: bold;
+}
+
+/* 햄버거 */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 메뉴 */
+.menu {
+    display: flex;
+    justify-content: center; /* ⭐ 핵심 */
+    gap: 40px;
+    align-items: center;
+    height: 70px;
+}
+.menu-item {
+    position: relative;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+/* 드롭다운 */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0; /* ⭐ 핵심 */
+    background: #fff;
+    min-width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+
+    transition: 0.25s;
+}
+
+/* PC hover */
+.menu-item:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* 모바일 클릭 */
+.menu-item.open .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* 링크 */
+.dropdown a {
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown a:hover {
+    background: #f5f5f5;
+}
+
+/* 📱 모바일 */
+@media (max-width: 768px) {
+    
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        display: none;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu-item {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .dropdown {
+        position: static;
+        box-shadow: none;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        display: none;
+    }
+
+    .menu-item.open .dropdown {
+        display: block;
+    }
+}
