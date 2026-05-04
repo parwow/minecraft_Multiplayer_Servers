@@ -21,18 +21,9 @@
 
 <p>여기서 무료배포 모델 다운로드가 가능합니다.</p>
 
-<h1>📋 게시판</h1>
-
-<div class="write-box">
-    <input type="text" id="author" placeholder="작성자">
-    <input type="text" id="title" placeholder="제목">
-    <textarea id="content" placeholder="내용"></textarea>
-    <button onclick="addPost()">글쓰기</button>
-</div>
 
 <hr>
 
-<div id="post-list"></div>
 
 <script>
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
